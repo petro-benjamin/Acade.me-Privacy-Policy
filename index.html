@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acade.me Privacy Policy</title>
+<style>
+  :root {
+    --crimson: #DC143C;
+    --ink: #1c1c1e;
+    --muted: #6b6b70;
+    --bg: #ffffff;
+    --rule: #e5e5ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #f2f2f7; --muted: #98989e; --bg: #111114; --rule: #2c2c2e; }
+  }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 17px/1.65 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 680px; margin: 0 auto; padding: 48px 16px 80px; }
+  h1 { color: var(--crimson); font-size: 2rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 32px; }
+  h2 { font-size: 1.15rem; margin: 32px 0 8px; border-top: 1px solid var(--rule); padding-top: 24px; }
+  p, li { margin: 0 0 12px; }
+  ul { padding-left: 22px; }
+  .promise {
+    border-left: 4px solid var(--crimson); padding: 10px 14px; margin: 20px 0;
+    background: rgba(220, 20, 60, 0.06); border-radius: 0 8px 8px 0;
+  }
+  a { color: var(--crimson); }
+  footer { color: var(--muted); font-size: 0.85rem; margin-top: 40px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Acade.me Privacy Policy</h1>
+  <p class="sub">Effective September 2026</p>
+
+  <div class="promise">
+    <p><strong>The short version:</strong> Acade.me collects no data about you. There are no
+    accounts, no analytics, no ads, and no servers of ours. Your papers, your notes, and your
+    reading history live only on your device.</p>
+  </div>
+
+  <h2>What Acade.me stores, and where</h2>
+  <p>Everything the app manages — your imported PDF files, the library database, collections,
+  read states, and settings — is stored locally on your device, in the app's own storage. We
+  operate no backend: nothing you do in Acade.me is transmitted to us, because there is no
+  "us" to transmit to. Deleting the app deletes this data.</p>
+
+  <h2>What leaves your device, and why</h2>
+  <p>Acade.me uses the network only for these purposes:</p>
+  <ul>
+    <li><strong>Identifying papers.</strong> To find out what a PDF is, the app queries public
+    bibliographic registries — Crossref, Semantic Scholar, OpenAlex, and (for PubMed content)
+    NCBI. The only information sent is a public identifier found inside the document or its
+    metadata (such as a DOI or arXiv ID) or a title string. These requests contain nothing
+    about you.</li>
+    <li><strong>Related papers you ask for.</strong> When you tap Find related papers, the app
+    sends the public identifiers of papers in your library (their DOI or registry ID) to
+    Semantic Scholar and OpenAlex to look up works connected to them — references, related
+    works, and citing papers. Nothing else accompanies them.</li>
+    <li><strong>Searches you run.</strong> When you use Find New to search for papers, the
+    search text and the fields you select are sent to the registry being searched — Semantic
+    Scholar or OpenAlex, whichever suits the search or is available — exactly as with any
+    search engine. Nothing else accompanies them.</li>
+    <li><strong>Downloads you request.</strong> If you have entered an Elsevier or NCBI key in
+    Settings, you can tap Download PDF on a suggested paper or search result. The app then
+    contacts legal open-access sources (such as arXiv, OpenAlex, PubMed Central, Unpaywall, or a
+    publisher's official API) to fetch that specific document.</li>
+    <li><strong>Links you share to Acade.me.</strong> When you share a web page's link to
+    Acade.me (for example from Safari), the app downloads the PDF from that address so it can
+    import it. Nothing else accompanies the request. A shared PDF file is imported directly and
+    never leaves your device.</li>
+    <li><strong>Abstracts of papers you preview.</strong> When you open a suggested paper or a
+    search result to read its abstract, the app sends that paper's public identifier (its DOI
+    or registry ID) to OpenAlex or Semantic Scholar to fetch the abstract. Nothing else
+    accompanies it.</li>
+  </ul>
+  <p>Responses are cached on your device so repeat lookups don't leave it at all.</p>
+
+  <h2>Optional API keys you provide</h2>
+  <p>The Settings screen lets you enter your own API credentials (for example a Semantic
+  Scholar key, an Elsevier institutional key, or a contact email used by services like
+  Unpaywall and Crossref's polite pool). Every one of these is optional — the app is fully
+  functional with none of them. Each credential is stored only on your device and is sent
+  only to its own service, with each field disclosing exactly where it goes. They are never
+  sent to us or to any other party.</p>
+
+  <h2>What Acade.me does not do</h2>
+  <ul>
+    <li>No accounts or sign-in of any kind.</li>
+    <li>No analytics, telemetry, or crash reporting by us.</li>
+    <li>No advertising and no advertising identifiers.</li>
+    <li>No selling, sharing, or transfer of data — we never possess any.</li>
+    <li>No AI processing of your library; the app's organization is deterministic, on-device logic.</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>Acade.me is a research tool intended for general audiences. It collects no data from
+  anyone, including children.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If a future version of the app ever changes what leaves your device, this policy will be
+  updated first and the change will be disclosed in the app before it takes effect.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy: <a href="mailto:petro.benjamin@yahoo.com">petro.benjamin@yahoo.com</a></p>
+
+  <footer>Acade.me — your research library, organized and explorable, entirely on your device.
+  · <a href="support/">Support</a></footer>
+</main>
+</body>
+</html>
