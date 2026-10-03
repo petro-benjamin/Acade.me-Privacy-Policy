@@ -10,6 +10,7 @@ export const CITATION_STYLES = [
     'vancouver',
     'ama',
     'ieee',
+    'sist',
 ];
 export const CITATION_STYLE_LABELS = {
     acs: 'ACS',
@@ -22,6 +23,7 @@ export const CITATION_STYLE_LABELS = {
     mla: 'MLA',
     ama: 'AMA',
     rsc: 'RSC',
+    sist: 'SIST 02',
 };
 // Numbered styles cite by number, in order of first citation; the
 // others by author and year, with an alphabetical reference list
@@ -32,11 +34,15 @@ const NUMBERED = new Set([
     'nature',
     'ama',
     'rsc',
+    'sist',
 ]);
 export const isNumberedStyle = (style) => NUMBERED.has(style);
 // Numbered styles that cite with superscript numbers (the rest of the
 // numbered styles use brackets)
 export const isSuperscriptStyle = (style) => NUMBERED.has(style) && style !== 'ieee' && style !== 'vancouver';
+// Han, kana, and Hangul (and the 々 repetition mark)
+const CJK = /[\u3005\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uac00-\ud7af]/;
+export const isCjkName = (full) => CJK.test(full);
 const PARTICLES = new Set([
     'van',
     'von',
@@ -61,6 +67,11 @@ const PARTICLES = new Set([
 const SUFFIXES = /^(jr\.?|sr\.?|ii|iii|iv)$/i;
 export const parseName = (full) => {
     var _a, _b;
+    if (isCjkName(full)) {
+        // Family name first; a space (or comma) after it marks where it ends
+        const written = full.replace(/[\s\u3000,，]+/g, ' ').trim();
+        return { family: written, given: [], suffix: null, cjk: true, short: written.split(' ')[0] };
+    }
     const clean = full.replace(/\s+/g, ' ').trim();
     const comma = clean.indexOf(',');
     if (comma > 0) {
@@ -172,7 +183,7 @@ const mlaPages = (pages) => {
         i++;
     return `${start}–${end.slice(Math.min(i, end.length - 2))}`;
 };
-const endWithPeriod = (text) => (/[.?!]$/.test(text) ? text : `${text}.`);
+const endWithPeriod = (text) => /[.?!。？！]$/.test(text) ? text : `${text}.`;
 // Kaufman, J. V. R.; Picard, J. P. The Furoxans. Chemical Reviews
 // 1959, 59 (3), 429–461. DOI: 10.1021/cr50027a002.
 const acs = (e, names) => {
@@ -493,6 +504,36 @@ const rsc = (e, names) => {
         parts.push(` DOI: ${e.doi}.`);
     return render(parts);
 };
+// SIST 02 (Japan Science and Technology Agency): 山田太郎; Kaufman,
+// J. V. R. The Furoxans. Chemical Reviews. 1959, vol. 59, no. 3,
+// p. 429-461. https://doi.org/10.1021/cr50027a002
+// Names in their own script are printed whole; a list of only such
+// names is separated by commas, as Japanese references are.
+const sist = (e, names) => {
+    const formatted = names.map(n => n.cjk ? n.family : withSuffix(`${n.family}, ${dotted(n)}`.replace(/, $/, ''), n));
+    const separator = names.length > 0 && names.every(n => n.cjk) ? ', ' : '; ';
+    const parts = [];
+    if (formatted.length > 0)
+        parts.push(`${endWithPeriod(formatted.join(separator))} `);
+    if (e.title)
+        parts.push(`${endWithPeriod(e.title)} `);
+    if (e.venue)
+        parts.push(`${endWithPeriod(e.venue)} `);
+    const where = [];
+    if (e.year !== null)
+        where.push(String(e.year));
+    if (e.volume)
+        where.push(`vol. ${e.volume}`);
+    if (e.issue)
+        where.push(`no. ${e.issue}`);
+    if (e.pages)
+        where.push(`p. ${e.pages.replace(/[–—]+/g, '-')}`);
+    if (where.length > 0)
+        parts.push(`${where.join(', ')}.`);
+    if (e.doi)
+        parts.push(` https://doi.org/${e.doi}`);
+    return render(parts);
+};
 export const formatCitation = (entry, style) => {
     const names = entry.authors.map(parseName).filter(n => n.family.length > 0);
     switch (style) {
@@ -514,6 +555,8 @@ export const formatCitation = (entry, style) => {
             return ama(entry, names);
         case 'rsc':
             return rsc(entry, names);
+        case 'sist':
+            return sist(entry, names);
         default:
             return ieee(entry, names);
     }
@@ -532,6 +575,8 @@ const listPrefix = (style, index) => {
         return `[${index + 1}] `;
     if (style === 'rsc')
         return `${index + 1} `;
+    if (style === 'sist')
+        return `${index + 1}) `;
     return `${index + 1}. `;
 };
 // Several papers (a collection, a writing project) as a reference list
@@ -561,6 +606,7 @@ const SUPERSCRIPT = {
     '9': '⁹',
     ',': '˒',
     '–': '⁻',
+    ')': '⁾',
 };
 // 1, 2, 3, 5 → "1–3,5"
 export const compressNumbers = (numbers) => {
@@ -577,7 +623,7 @@ export const compressNumbers = (numbers) => {
 };
 const surnameOf = (entry) => entry.authors.map(parseName).filter(n => n.family.length > 0);
 const authorDate = (entry, style) => {
-    const names = surnameOf(entry).map(n => n.family);
+    const names = surnameOf(entry).map(n => { var _a; return (_a = n.short) !== null && _a !== void 0 ? _a : n.family; });
     let who;
     if (names.length === 0) {
         who = entry.title ? `“${entry.title.split(/\s+/).slice(0, 4).join(' ')}”` : '';
@@ -608,12 +654,14 @@ export const formatInText = (cited, style) => {
             const text = `[${numbers.replace(/,/g, ', ')}]`;
             return { text, html: escapeHtml(text) };
         }
-        // ACS, Nature, AMA, RSC: superscript
-        const text = numbers
+        // ACS, Nature, AMA, RSC: superscript; SIST 02 as Japanese
+        // papers write it, with a closing parenthesis — ¹⁾, ¹˒²⁾
+        const marked = style === 'sist' ? `${numbers})` : numbers;
+        const text = marked
             .split('')
             .map(c => { var _a; return (_a = SUPERSCRIPT[c]) !== null && _a !== void 0 ? _a : c; })
             .join('');
-        return { text, html: `<sup>${escapeHtml(numbers)}</sup>` };
+        return { text, html: `<sup>${escapeHtml(marked)}</sup>` };
     }
     const text = `(${cited
         .map(c => authorDate(c.entry, style))
