@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>Acade.me for Word</title>
+<script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+<link rel="stylesheet" href="taskpane.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>Acade.me</h1>
+    <p class="tagline" data-i18n="tagline">Cite from your library. No reference manager.</p>
+  </header>
+
+  <section class="library">
+    <div id="library-name" class="library-name">No library open</div>
+    <button id="open" class="secondary" data-i18n="open">Open library file…</button>
+    <input id="file" type="file" accept=".json,application/json" hidden>
+  </section>
+
+  <p id="empty" class="hint" data-i18n="emptyHint">
+    In Acade.me, export a library, collection, or writing project as Acade.me for Word (.json),
+    send it to this computer, and open it here. It stays on this computer.
+  </p>
+
+  <label class="style-row"><span data-i18n="style">Style</span>
+    <select id="style"></select>
+  </label>
+
+  <input id="search" type="search" placeholder="Search your library" aria-label="Search your library" hidden>
+
+  <p class="hint" data-i18n="clickHint">Click a paper to cite it at the cursor, or tick several and cite them together.</p>
+
+  <div id="papers" class="papers" role="list"></div>
+
+  <footer>
+    <button id="cite-selected" class="primary" disabled>Cite selected</button>
+    <div class="row">
+      <button id="bibliography" class="secondary" data-i18n="bibliography">Insert bibliography</button>
+      <button id="refresh" class="secondary" data-i18n="refresh">Refresh</button>
+    </div>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <p class="fine"><span data-i18n="fine">Works offline from the file you open; nothing is sent anywhere.</span>
+      <a href="../" target="_blank" rel="noopener" data-i18n="privacy">Privacy</a> ·
+      <a href="../support/" target="_blank" rel="noopener" data-i18n="support">Support</a></p>
+  </footer>
+</main>
+<script type="module" src="js/word-addin/src/taskpane.js"></script>
+</body>
+</html>

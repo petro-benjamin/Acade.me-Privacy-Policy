@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acade.me for Word</title>
+<style>
+  :root {
+    --crimson: #DC143C;
+    --ink: #1c1c1e;
+    --muted: #6b6b70;
+    --bg: #ffffff;
+    --rule: #e5e5ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #f2f2f7; --muted: #98989e; --bg: #111114; --rule: #2c2c2e; }
+  }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 17px/1.65 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 680px; margin: 0 auto; padding: 48px 16px 80px; }
+  h1 { color: var(--crimson); font-size: 2rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 32px; }
+  h2 { font-size: 1.15rem; margin: 32px 0 8px; border-top: 1px solid var(--rule); padding-top: 24px; }
+  p, li { margin: 0 0 12px; }
+  ul { padding-left: 22px; }
+  .promise {
+    border-left: 4px solid var(--crimson); padding: 10px 14px; margin: 20px 0;
+    background: rgba(220, 20, 60, 0.06); border-radius: 0 8px 8px 0;
+  }
+  a { color: var(--crimson); }
+  ol { padding-left: 22px; }
+  li { margin: 0 0 8px; }
+  code { font-size: 0.9em; background: var(--rule); padding: 1px 4px; border-radius: 4px; word-break: break-all; }
+  .download { display: inline-block; background: var(--crimson); color: white !important; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-weight: 600; }
+  footer { color: var(--muted); font-size: 0.85rem; margin-top: 40px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Acade.me for Word</h1>
+  <p class="sub">Cite from your Acade.me library inside Word — no reference manager, no account</p>
+
+  <div class="promise">
+    <p><strong>How it works:</strong> in Acade.me, export a library, collection, or writing project as
+    <strong>Acade.me for Word (.json)</strong> and send it to your computer. In Word, open the
+    Acade.me panel, open that file, and click a paper to cite it at the cursor.
+    <strong>Insert bibliography</strong> adds the reference list; <strong>Refresh</strong> renumbers
+    everything after you edit. Ten styles: ACS, RSC, Nature, APA, Chicago, Harvard, MLA, Vancouver,
+    AMA, IEEE.</p>
+  </div>
+
+  <p><a class="download" href="manifest.xml" download>Download the add-in file (manifest.xml)</a></p>
+  <p>Needs Word in Microsoft 365, Word 2021 or later, or Word on the web.</p>
+
+  <h2>Install in Word on the web (simplest)</h2>
+  <ol>
+    <li>Open a document at <a href="https://www.office.com" target="_blank" rel="noopener">office.com</a>.</li>
+    <li>Home → Add-ins → More Add-ins (or Insert → Add-ins) → <strong>My Add-ins</strong> →
+      <strong>Upload My Add-in</strong>.</li>
+    <li>Choose <code>manifest.xml</code> and upload. <strong>Acade.me</strong> appears on the Home tab.</li>
+  </ol>
+
+  <h2>Install in Word for Mac</h2>
+  <ol>
+    <li>In Finder choose Go → Go to Folder… and enter
+      <code>~/Library/Containers/com.microsoft.Word/Data/Documents/wef</code>
+      (create the <code>wef</code> folder if it isn't there).</li>
+    <li>Copy <code>manifest.xml</code> into that folder and restart Word.</li>
+    <li>Home → Add-ins (or Insert → My Add-ins) → <strong>Acade.me</strong> under Developer Add-ins.</li>
+  </ol>
+
+  <h2>Install in Word for Windows</h2>
+  <ol>
+    <li>If Home → Add-ins → More Add-ins → My Add-ins shows <strong>Upload My Add-in</strong>, use it
+      with <code>manifest.xml</code>.</li>
+    <li>Otherwise: put <code>manifest.xml</code> in a folder, right-click the folder → Properties →
+      Sharing → Share, and copy its network path (for example <code>\\YOUR-PC\Addins</code>).</li>
+    <li>In Word: File → Options → Trust Center → Trust Center Settings → Trusted Add-in Catalogs. Paste
+      the path, click Add catalog, tick <em>Show in Menu</em>, and restart Word.</li>
+    <li>Home → Add-ins → Advanced (or Insert → My Add-ins) → <strong>Shared Folder</strong> →
+      <strong>Acade.me</strong>.</li>
+  </ol>
+
+  <h2>Your data</h2>
+  <p>The add-in runs inside Word on your computer. The library file you open is kept in Word's add-in
+    storage on that computer, and the works you cite are saved inside your document so it can be
+    refreshed anywhere. Nothing is sent to us — there is no server. See the
+    <a href="../">privacy policy</a>.</p>
+
+  <footer>Acade.me — your research library, organized and explorable, entirely on your device.
+  · <a href="../support/">Support</a> · <a href="../">Privacy policy</a></footer>
+</main>
+</body>
+</html>

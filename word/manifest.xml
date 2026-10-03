@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Acade.me for Word: add-in-only manifest (Word on Windows, Mac, and
+     the web). The add-in is static files on GitHub Pages; moving it to
+     its own site means changing every URL below and re-sending this
+     file to anyone who loaded it. -->
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+           xsi:type="TaskPaneApp">
+  <Id>203a821e-f65c-45ce-9c02-8a35ba93222e</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Acade.me</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Acade.me for Word"/>
+  <Description DefaultValue="Cite papers from your Acade.me library at the cursor and build the bibliography in ten styles (ACS, RSC, Nature, APA, Chicago, Harvard, MLA, Vancouver, AMA, IEEE). Works offline from your exported library file; nothing is sent anywhere."/>
+  <IconUrl DefaultValue="https://petro-benjamin.github.io/Acade.me-Privacy-Policy/word/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://petro-benjamin.github.io/Acade.me-Privacy-Policy/word/assets/icon-64.png"/>
+  <SupportUrl DefaultValue="https://petro-benjamin.github.io/Acade.me-Privacy-Policy/support/"/>
+  <AppDomains>
+    <AppDomain>https://petro-benjamin.github.io</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Document"/>
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.3">
+      <Set Name="WordApi" MinVersion="1.3"/>
+    </Sets>
+  </Requirements>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://petro-benjamin.github.io/Acade.me-Privacy-Policy/word/taskpane.html"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <FunctionFile resid="Commands.Url"/>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="Academe.Group">
+                <Label resid="Group.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16"/>
+                  <bt:Image size="32" resid="Icon.32"/>
+                  <bt:Image size="80" resid="Icon.80"/>
+                </Icon>
+                <Control xsi:type="Button" id="Academe.OpenPane">
+                  <Label resid="Button.Label"/>
+                  <Supertip>
+                    <Title resid="Button.Label"/>
+                    <Description resid="Button.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16"/>
+                    <bt:Image size="32" resid="Icon.32"/>
+                    <bt:Image size="80" resid="Icon.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>AcademeTaskpane</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16" DefaultValue="https://petro-benjamin.github.io/Acade.me-Privacy-Policy/word/assets/icon-16.png"/>
+        <bt:Image id="Icon.32" DefaultValue="https://petro-benjamin.github.io/Acade.me-Privacy-Policy/word/assets/icon-32.png"/>
+        <bt:Image id="Icon.80" DefaultValue="https://petro-benjamin.github.io/Acade.me-Privacy-Policy/word/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Commands.Url" DefaultValue="https://petro-benjamin.github.io/Acade.me-Privacy-Policy/word/commands.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://petro-benjamin.github.io/Acade.me-Privacy-Policy/word/taskpane.html"/>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://petro-benjamin.github.io/Acade.me-Privacy-Policy/support/"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="GetStarted.Title" DefaultValue="Cite from Acade.me"/>
+        <bt:String id="Group.Label" DefaultValue="Acade.me"/>
+        <bt:String id="Button.Label" DefaultValue="Acade.me"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="Open Acade.me on the Home tab, open the library file you exported from the app, and click a paper to cite it."/>
+        <bt:String id="Button.Tooltip" DefaultValue="Cite papers from your Acade.me library and insert the bibliography."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
