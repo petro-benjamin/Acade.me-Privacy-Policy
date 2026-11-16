@@ -41,8 +41,7 @@
   <div class="promise">
     <p><strong>The short version:</strong> Acade.me collects no data about you. There are no
     accounts, no analytics, no ads, and no servers of ours. Your papers, your notes, and your
-    reading history live only on your device — and, for a library you choose to share, in a cloud
-    folder you choose.</p>
+    reading history live only on your device.</p>
   </div>
 
   <h2>What Acade.me stores, and where</h2>
@@ -79,6 +78,14 @@
     search result to read its abstract, the app sends that paper's public identifier (its DOI
     or registry ID) to OpenAlex or Semantic Scholar to fetch the abstract. Nothing else
     accompanies it.</li>
+    <li><strong>New-paper alerts, if you turn them on.</strong> When New-paper alerts are on in
+    Settings (they are off until you turn them on), the app asks OpenAlex a few times a day —
+    in the background, when your device allows it, and when you open the app — for newly
+    published papers that cite papers in your libraries. Each request contains the OpenAlex
+    identifiers of up to 100 papers per library (the most recently added) and a date; your
+    contact email or OpenAlex key, if you entered them in Settings, go with them as they do for
+    every OpenAlex request. Nothing else accompanies them. The notifications are created on your
+    device; no notification service of ours or anyone else's is involved.</li>
   </ul>
   <p>Responses are cached on your device so repeat lookups don't leave it at all.</p>
 
@@ -88,24 +95,6 @@
   The text is never sent anywhere. The first time you use a language, your device downloads that
   language from Apple or Google, as it would for any app; that download contains nothing of yours.
   Translations are kept on your device and always labelled as machine translations.</p>
-
-  <h2>Shared libraries (optional)</h2>
-  <p>Nothing is shared until you share a library. When you share one in Settings, Acade.me copies
-  <strong>that library only</strong> — its PDFs, paper details, collections, highlights and notes —
-  into <strong>a folder you choose</strong> in your own cloud storage (for example Dropbox, Google
-  Drive, OneDrive, or iCloud Drive), and reads from that folder what the other devices in the
-  library have added. Your other libraries stay on your device. Anyone you give access to the
-  folder (through your cloud provider) can join the library with Acade.me and sees its papers and
-  everyone's highlights and notes, each with the name you entered. So that they follow you to your
-  own other devices, your personal items for that library — reading states, notes on papers, tags,
-  topic renames, writing projects, and dismissed suggestions — and, while you have a paper of the
-  library open, which paper — are also written to the folder; Acade.me never shows them to anyone
-  else, but anyone with access to the folder could read its files. The folder is yours: its
-  contents are handled by your cloud provider under its own privacy policy and your account with
-  it. Acade.me runs no server and never receives this data. “Remove from my library” removes a
-  paper from your device only; “Delete for everyone” removes it from every member's library and
-  from the folder. Stopping sharing deletes nothing; to remove the shared copy, delete the folder
-  in your cloud storage.</p>
 
   <h2>Optional API keys you provide</h2>
   <p>The Settings screen lets you enter your own API credentials (for example a Semantic
